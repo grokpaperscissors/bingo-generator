@@ -3,11 +3,31 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 const suggestions = [
-  "Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
-  "This is a test to check rendering", "Item 7", "Item 8", "Item 9", "Item 10",
-  "Item 11", "Item 12", "Item 13", "Item 14", "Item 15",
-  "Item 16", "Item 17", "Item 18", "Item 19", "Item 20",
-  "Item 21", "Item 22", "Item 23", "Item 24", "Item 25",
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "This is a test to check rendering",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+  "Item 11",
+  "Item 12",
+  "Item 13",
+  "Item 14",
+  "Item 15",
+  "Item 16",
+  "Item 17",
+  "Item 18",
+  "Item 19",
+  "Item 20",
+  "Item 21",
+  "Item 22",
+  "Item 23",
+  "Item 24",
+  "Item 25",
 ];
 
 function BingoGenerator() {
@@ -30,24 +50,39 @@ function BingoGenerator() {
 
   // Download both grids as PDF
   function downloadGridsAsPDF() {
-    const input = document.getElementById("bingo-grids"); // Select the container with both grids
-    html2canvas(input, { scale: 3 }).then((canvas) => {
+    const input = document.getElementById("bingo-grids");
+    const format = "a4"; // Can be dynamically adjusted
+
+    html2canvas(input, { scale: 2 }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "pt",
-        format: "a4", // Set the PDF to A4 size
+        format: format,
       });
 
-      // Set the margins and dimensions for the grids
-      const margin = 20; // 20px margins on both sides
-      const pageWidth = pdf.internal.pageSize.getWidth() - 2 * margin; // Subtract margins from page width
-      const imgWidth = pageWidth; // Image will take the entire width (minus margins)
-      const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+      // Get page dimensions
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
 
-      // Add the image to the PDF, starting at the top (no vertical centering)
-      pdf.addImage(imgData, "PNG", margin, margin, imgWidth, imgHeight);
-      pdf.save("bingo_grids_with_heading.pdf");
+      // Calculate the aspect ratio of the image
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const canvasAspectRatio = canvasWidth / canvasHeight;
+
+      // Calculate the width and height while preserving aspect ratio
+      let imgWidth = pageWidth - 40; // 20pt margin on each side
+      let imgHeight = imgWidth / canvasAspectRatio;
+
+      // If the calculated height exceeds the page height, adjust based on height
+      if (imgHeight > pageHeight - 40) {
+        imgHeight = pageHeight - 40;
+        imgWidth = imgHeight * canvasAspectRatio;
+      }
+
+      // Add the image to the PDF without distortion
+      pdf.addImage(imgData, "PNG", 20, 20, imgWidth, imgHeight);
+      pdf.save("bingo_grids.pdf");
     });
   }
 
@@ -102,10 +137,13 @@ function BingoGenerator() {
         .grid-item {
           background-color: #f0f0f0;
           border: 1px solid #ddd;
-          padding: 15px;
+          padding: 10px;
           text-align: center;
           font-size: 14px;
-          word-wrap: break-word;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          aspect-ratio: 1 / 1; /* Ensures square cells */
         }
         button {
           margin: 10px;

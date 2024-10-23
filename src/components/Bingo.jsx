@@ -86,14 +86,14 @@ function BingoGenerator() {
           flex-direction: column;
           gap: 30px;
           margin: 20px auto;
+          width: 100%; /* Full width to ensure it fills the space */
         }
         .grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(5, 1fr); /* 5 columns */
           gap: 10px;
           margin: 0 auto;
-          width: 100%; /* Take the full width on screen */
-          max-width: 600px; /* But limit to 600px for on-screen view */
+          width: 100%; /* Ensure grid fills the entire width of the PDF */
         }
         h2 {
           font-size: 20px;

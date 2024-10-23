@@ -31,7 +31,7 @@ function BingoGenerator() {
   // Download both grids as PDF
   function downloadGridsAsPDF() {
     const input = document.getElementById("bingo-grids"); // Select the container with both grids
-    html2canvas(input, { scale: 2 }).then((canvas) => {
+    html2canvas(input, { scale: 3 }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
         orientation: "portrait",
@@ -42,19 +42,11 @@ function BingoGenerator() {
       // Set the margins and dimensions for the grids
       const margin = 20; // 20px margins on both sides
       const pageWidth = pdf.internal.pageSize.getWidth() - 2 * margin; // Subtract margins from page width
-      const pageHeight = pdf.internal.pageSize.getHeight();
       const imgWidth = pageWidth; // Image will take the entire width (minus margins)
       const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
 
-      // Check if the image height is larger than the page and reduce if necessary
-      const availableHeight = pageHeight - 2 * margin;
-      const finalImgHeight = imgHeight > availableHeight ? availableHeight : imgHeight;
-
-      // Center the image on the PDF page
-      const yPos = (pageHeight - finalImgHeight) / 2; // Center the image vertically
-
-      // Add the image to the PDF
-      pdf.addImage(imgData, "PNG", margin, yPos, imgWidth, finalImgHeight);
+      // Add the image to the PDF, starting at the top (no vertical centering)
+      pdf.addImage(imgData, "PNG", margin, margin, imgWidth, imgHeight);
       pdf.save("bingo_grids_with_heading.pdf");
     });
   }
@@ -100,7 +92,8 @@ function BingoGenerator() {
           grid-template-columns: repeat(5, 1fr);
           gap: 10px;
           margin: 0 auto;
-          width: 600px; /* Reasonable width for screen, but will be expanded in PDF */
+          width: 100%; /* Take the full width on screen */
+          max-width: 600px; /* But limit to 600px for on-screen view */
         }
         h2 {
           font-size: 20px;

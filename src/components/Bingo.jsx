@@ -71,17 +71,17 @@ function BingoGenerator() {
       const canvasAspectRatio = canvasWidth / canvasHeight;
 
       // Calculate the width and height while preserving aspect ratio
-      let imgWidth = pageWidth - 40; // 20pt margin on each side
+      let imgWidth = pageWidth - 20; // 10pt margin on each side
       let imgHeight = imgWidth / canvasAspectRatio;
 
       // If the calculated height exceeds the page height, adjust based on height
-      if (imgHeight > pageHeight - 40) {
-        imgHeight = pageHeight - 40;
+      if (imgHeight > pageHeight - 20) {
+        imgHeight = pageHeight - 20;
         imgWidth = imgHeight * canvasAspectRatio;
       }
 
       // Add the image to the PDF without distortion
-      pdf.addImage(imgData, "PNG", 20, 20, imgWidth, imgHeight);
+      pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
       pdf.save("bingo_grids.pdf");
     });
   }
@@ -131,15 +131,15 @@ function BingoGenerator() {
           width: 100%; /* Ensure grid fills the entire width of the PDF */
         }
         h2 {
-          font-size: 20px;
-          margin-bottom: 10px;
+          font-size: 30px;
+          margin-bottom: 15px;
         }
         .grid-item {
           background-color: #f0f0f0;
           border: 1px solid #ddd;
           padding: 10px;
-          text-align: center;
-          font-size: 14px;
+          font-size: 22px;
+          text-align: center; 
           display: flex;
           justify-content: center;
           align-items: center;

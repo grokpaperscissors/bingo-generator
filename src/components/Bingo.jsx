@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -13,7 +13,6 @@ const suggestions = [
 function BingoGenerator() {
   const [grid1, setGrid1] = useState(shuffleArray([...suggestions]));
   const [grid2, setGrid2] = useState(shuffleArray([...suggestions]));
-  const [gridHeight, setGridHeight] = useState(0);
 
   // Shuffle function
   function shuffleArray(array) {
@@ -28,12 +27,6 @@ function BingoGenerator() {
     setGrid1(shuffleArray([...suggestions]));
     setGrid2(shuffleArray([...suggestions]));
   }
-
-  // Adjust grid height based on page size
-  useEffect(() => {
-    const pageHeight = window.innerHeight - 100; // Minus some padding for buttons
-    setGridHeight(pageHeight / 2); // Each grid will take half the page height
-  }, []);
 
   // Download both grids as PDF
   function downloadGridsAsPDF() {
@@ -63,7 +56,7 @@ function BingoGenerator() {
       <h1>Bingo Generator</h1>
       <div id="bingo-grids" className="grids">
         <h2>Grid 1</h2>
-        <div className="grid" style={{ height: `${gridHeight}px` }}>
+        <div className="grid">
           {grid1.map((item, index) => (
             <div key={index} className="grid-item">
               {item}
@@ -71,7 +64,7 @@ function BingoGenerator() {
           ))}
         </div>
         <h2>Grid 2</h2>
-        <div className="grid" style={{ height: `${gridHeight}px` }}>
+        <div className="grid">
           {grid2.map((item, index) => (
             <div key={index} className="grid-item">
               {item}
@@ -109,13 +102,10 @@ function BingoGenerator() {
         .grid-item {
           background-color: #f0f0f0;
           border: 1px solid #ddd;
+          padding: 15px;
           text-align: center;
           font-size: 14px;
           word-wrap: break-word;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          aspect-ratio: 1 / 1; /* Ensure the grid items are square */
         }
         button {
           margin: 10px;

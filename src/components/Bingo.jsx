@@ -115,7 +115,7 @@ function BingoGenerator() {
           display: flex;
           justify-content: center;
           align-items: center;
-          height: calc(20% - 12px); /* Makes the cell square by keeping height proportional to the grid */
+          aspect-ratio: 1 / 1; /* Ensure the grid items are square */
         }
         button {
           margin: 10px;

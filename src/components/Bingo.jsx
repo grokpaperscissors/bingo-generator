@@ -1,9 +1,5 @@
 'use client'
-
 import React, { useState, useCallback } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Star, RefreshCw, Download } from 'lucide-react'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 

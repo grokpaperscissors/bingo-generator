@@ -79,9 +79,10 @@ export default function BingoGenerator() {
   return (
     <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-purple-700">
       {/* Diagonal stripes overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:100px_100px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg, rgba(255, 90, 16, 1) 0%, rgba(102, 45, 143, 1) 35%, rgba(255, 188, 3, 1) 100%)] bg-[length:100px_100px]" />
 
       {/* Decorative stars */}
+      {/* TODO: Replace with bigger sparkles */}
       <div className="absolute top-12 right-12 w-8 h-8 text-white/20">★</div>
       <div className="absolute bottom-12 left-12 w-8 h-8 text-white/20">★</div>
 

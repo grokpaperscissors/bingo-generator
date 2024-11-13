@@ -35,23 +35,21 @@ const suggestions = [
 "Heard or saw description of the MVP role",
 ];
 
-function BingoGenerator() {
-  const [grid1, setGrid1] = useState(shuffleArray([...suggestions]));
-  const [grid2, setGrid2] = useState(shuffleArray([...suggestions]));
+function shuffleArray(array) {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+}
 
-  // Shuffle function
-  function shuffleArray(array) {
-    return array
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
-  }
+export default function BingoGenerator() {
+  const [grid1, setGrid1] = useState(() => shuffleArray([...suggestions]))
+  const [grid2, setGrid2] = useState(() => shuffleArray([...suggestions]))
 
-  // Shuffle both grids
-  function shuffleGrids() {
-    setGrid1(shuffleArray([...suggestions]));
-    setGrid2(shuffleArray([...suggestions]));
-  }
+  const regenerateGrids = useCallback(() => {
+    setGrid1(shuffleArray([...suggestions]))
+    setGrid2(shuffleArray([...suggestions]))
+  }, [])
 
   const savePDF = useCallback(() => {
     const input = document.getElementById('bingo-grids')
@@ -82,12 +80,12 @@ function BingoGenerator() {
   const BingoGrid = ({ items }) => (
     <div className="grid grid-cols-5 gap-2 md:gap-4">
       {items.map((item, index) => (
-        <Card
+        <div
           key={index}
-          className="aspect-square flex items-center justify-center p-2 text-center text-xs md:text-sm bg-white/95 hover:bg-white transition-colors border-0"
+          className="aspect-square flex items-center justify-center p-2 text-center text-xs md:text-sm bg-white/95 hover:bg-white transition-colors rounded-lg shadow"
         >
           {item}
-        </Card>
+        </div>
       ))}
     </div>
   )
@@ -98,8 +96,8 @@ function BingoGenerator() {
       <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:100px_100px]" />
 
       {/* Decorative stars */}
-      <Star className="absolute top-12 right-12 w-8 h-8 text-white/20" />
-      <Star className="absolute bottom-12 left-12 w-8 h-8 text-white/20" />
+      <div className="absolute top-12 right-12 w-8 h-8 text-white/20">★</div>
+      <div className="absolute bottom-12 left-12 w-8 h-8 text-white/20">★</div>
 
       {/* Content */}
       <div id="bingo-grids" className="relative z-10 space-y-8">
@@ -126,12 +124,12 @@ function BingoGenerator() {
 
       {/* Buttons */}
       <div className="mt-8 flex justify-center gap-4">
-        <Button onClick={regenerateGrids} className="bg-white text-purple-700 hover:bg-purple-100">
-          <RefreshCw className="mr-2 h-4 w-4" /> Regenerate
-        </Button>
-        <Button onClick={savePDF} className="bg-white text-purple-700 hover:bg-purple-100">
-          <Download className="mr-2 h-4 w-4" /> Save as PDF
-        </Button>
+        <button onClick={regenerateGrids} className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center">
+          <span className="mr-2">↻</span> Regenerate
+        </button>
+        <button onClick={savePDF} className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center">
+          <span className="mr-2">↓</span> Save as PDF
+        </button>
       </div>
     </div>
   )

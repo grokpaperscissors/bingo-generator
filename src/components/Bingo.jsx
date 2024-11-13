@@ -1,6 +1,11 @@
-import React, { useState } from "react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+'use client'
+
+import React, { useState, useCallback } from "react"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Star, RefreshCw, Download } from 'lucide-react'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 
 const suggestions = [
 "Tried the Insurance Request for Quote Bot Games Challenge",
@@ -48,119 +53,86 @@ function BingoGenerator() {
     setGrid2(shuffleArray([...suggestions]));
   }
 
-  // Download both grids as PDF
-  function downloadGridsAsPDF() {
-    const input = document.getElementById("bingo-grids");
-    const format = "a4"; // Can be dynamically adjusted
-
+  const savePDF = useCallback(() => {
+    const input = document.getElementById('bingo-grids')
     html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      const imgData = canvas.toDataURL('image/png')
       const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: format,
-      });
+        orientation: 'portrait',
+        unit: 'pt',
+        format: 'a4'
+      })
 
-      // Get page dimensions
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
+      const pageWidth = pdf.internal.pageSize.getWidth()
+      const pageHeight = pdf.internal.pageSize.getHeight()
+      const canvasAspectRatio = canvas.width / canvas.height
+      let imgWidth = pageWidth - 40
+      let imgHeight = imgWidth / canvasAspectRatio
 
-      // Calculate the aspect ratio of the image
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const canvasAspectRatio = canvasWidth / canvasHeight;
-
-      // Calculate the width and height while preserving aspect ratio
-      let imgWidth = pageWidth - 20; // 10pt margin on each side
-      let imgHeight = imgWidth / canvasAspectRatio;
-
-      // If the calculated height exceeds the page height, adjust based on height
-      if (imgHeight > pageHeight - 20) {
-        imgHeight = pageHeight - 20;
-        imgWidth = imgHeight * canvasAspectRatio;
+      if (imgHeight > pageHeight - 40) {
+        imgHeight = pageHeight - 40
+        imgWidth = imgHeight * canvasAspectRatio
       }
 
-      // Add the image to the PDF without distortion
-      pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
-      pdf.save("bingo_grids.pdf");
-    });
-  }
+      pdf.addImage(imgData, 'PNG', 20, 20, imgWidth, imgHeight)
+      pdf.save("pathfinder-bingo.pdf")
+    })
+  }, [])
+
+  const BingoGrid = ({ items }) => (
+    <div className="grid grid-cols-5 gap-2 md:gap-4">
+      {items.map((item, index) => (
+        <Card
+          key={index}
+          className="aspect-square flex items-center justify-center p-2 text-center text-xs md:text-sm bg-white/95 hover:bg-white transition-colors border-0"
+        >
+          {item}
+        </Card>
+      ))}
+    </div>
+  )
 
   return (
-    <div className="bingo-container">
-      <h1>Bingo Generator</h1>
-      <div id="bingo-grids" className="grids">
-        <h2>Grid 1</h2>
-        <div className="grid">
-          {grid1.map((item, index) => (
-            <div key={index} className="grid-item">
-              {item}
-            </div>
-          ))}
+    <div className="min-h-screen w-full max-w-6xl mx-auto p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-purple-700">
+      {/* Diagonal stripes overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_25%,rgba(255,255,255,0.1)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.1)_75%)] bg-[length:100px_100px]" />
+
+      {/* Decorative stars */}
+      <Star className="absolute top-12 right-12 w-8 h-8 text-white/20" />
+      <Star className="absolute bottom-12 left-12 w-8 h-8 text-white/20" />
+
+      {/* Content */}
+      <div id="bingo-grids" className="relative z-10 space-y-8">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl md:text-6xl font-serif text-white tracking-wide">
+            Pathfinder Bingo
+          </h1>
+          <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto">
+            Generate your unique bingo cards and start your self-care journey. Each square represents a step towards mindfulness and well-being.
+          </p>
         </div>
-        <h2>Grid 2</h2>
-        <div className="grid">
-          {grid2.map((item, index) => (
-            <div key={index} className="grid-item">
-              {item}
-            </div>
-          ))}
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-serif text-white text-center">Card 1</h2>
+            <BingoGrid items={grid1} />
+          </div>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-serif text-white text-center">Card 2</h2>
+            <BingoGrid items={grid2} />
+          </div>
         </div>
       </div>
-      <button onClick={shuffleGrids}>Shuffle Both Grids</button>
-      <button onClick={downloadGridsAsPDF}>Download as PDF</button>
 
-      <style>{`
-        .bingo-container {
-          text-align: center;
-          font-family: Arial, sans-serif;
-          padding: 20px;
-        }
-        .grids {
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-          margin: 20px auto;
-          width: 100%; /* Full width to ensure it fills the space */
-        }
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr); /* 5 columns */
-          gap: 10px;
-          margin: 0 auto;
-          width: 100%; /* Ensure grid fills the entire width of the PDF */
-        }
-        h2 {
-          font-size: 30px;
-          margin-bottom: 15px;
-        }
-        .grid-item {
-          background-color: #f0f0f0;
-          border: 1px solid #ddd;
-          padding: 10px;
-          font-size: 22px;
-          text-align: center; 
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          aspect-ratio: 1 / 1; /* Ensures square cells */
-        }
-        button {
-          margin: 10px;
-          padding: 12px 20px;
-          font-size: 14px;
-          cursor: pointer;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 5px;
-        }
-        button:hover {
-          background-color: #0056b3;
-        }
-      `}</style>
+      {/* Buttons */}
+      <div className="mt-8 flex justify-center gap-4">
+        <Button onClick={regenerateGrids} className="bg-white text-purple-700 hover:bg-purple-100">
+          <RefreshCw className="mr-2 h-4 w-4" /> Regenerate
+        </Button>
+        <Button onClick={savePDF} className="bg-white text-purple-700 hover:bg-purple-100">
+          <Download className="mr-2 h-4 w-4" /> Save as PDF
+        </Button>
+      </div>
     </div>
-  );
+  )
 }
-
-export default BingoGenerator;

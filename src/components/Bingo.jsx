@@ -140,8 +140,8 @@ export default function BingoGenerator() {
             Pathfinder Bingo
           </h1>
           <p className="text-white/90 font-museo-sans-100 text-lg md:text-xl max-w-2xl mx-auto print:text-black">
-            Start your Pathfinder journey with a game of Bingo! Circle each tile on the card as you complete it. Once you have circled all the tiles, find our Pathfinder Community reps (Shreya/ Rima) to snag some swag! 
-            Act fast! Only the first 30 winners will receive swag!
+            Start your Pathfinder journey with a game of Bingo! Circle each tile on the card as you complete it. Once you have circled all the tiles, find our Pathfinder Community reps (Bhuvana/ Rima/ Shreya) to snag some swag! 
+            Act fast! Only the first few winners will receive swag!
           </p>
         </div>
 

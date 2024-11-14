@@ -9,21 +9,21 @@
 
   @font-face {
     font-family: 'Museo Sans';
-    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    src: url('/assets/fonts/MuseoSans_500.otf') format('opentype');
     font-weight: 300;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Museo Sans';
-    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    src: url('/assets/fonts/MuseoSans_500.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Museo Sans';
-    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    src: url('/assets/fonts/MuseoSans_500.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
   }

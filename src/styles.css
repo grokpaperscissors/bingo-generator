@@ -30,7 +30,7 @@
 
   @font-face {
     font-family: 'Museo Sans';
-    src: url('../assets/fonts/museosans-100-webfont.ttf') format('opentype');
+    src: url('../assets/fonts/museosans-100-webfont.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
   }

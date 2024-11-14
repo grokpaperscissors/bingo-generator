@@ -32,7 +32,7 @@ function shuffleArray(array) {
 }
 
 const BingoCard = ({ content }) => (
-  <div className="bingo-tile flex items-center justify-center p-2 text-center text-md md:text-lg bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
+  <div className="bingo-tile flex items-center justify-center p-2 text-center text-sm md:text-md bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
 
   {/* <div className="bingo-tile flex items-center justify-center p-2 text-center bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none"> */}
     {typeof content === 'string' ? content : (
@@ -145,7 +145,7 @@ export default function BingoGenerator() {
           </p>
         </div>
 
-        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full font-museo-sans-500 text-3xl mx-0 print:gap-0 print:border print:border-gray-400">
+        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full font-museo-sans-500 text-xl mx-0 print:gap-0 print:border print:border-gray-400">
           {grid.map((item, index) => (
             <BingoCard 
               key={index} 

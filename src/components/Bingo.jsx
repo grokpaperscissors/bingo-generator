@@ -31,7 +31,7 @@ function shuffleArray(array) {
 }
 
 const BingoCard = ({ content }) => (
-  <div className="aspect-square w-full flex items-center justify-center p-2 text-center text-xs md:text-sm bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
+  <div className="bingo-tile flex items-center justify-center p-2 text-center text-xs md:text-sm bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
 
   {/* <div className="bingo-tile flex items-center justify-center p-2 text-center bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none"> */}
     {typeof content === 'string' ? content : (
@@ -46,7 +46,7 @@ export default function BingoGenerator() {
 
   const generateGrid = useCallback(() => {
     const shuffled = shuffleArray([...suggestions])
-    shuffled.splice(12, 0, { src: "/path-to-your-logo.png", alt: "Logo" }) // Insert logo in the middle
+    shuffled.splice(12, 0, { src: ".src/assets/images/logo.png", alt: "Logo" }) // Insert logo in the middle
     setGrid(shuffled)
   }, [])
 
@@ -113,7 +113,7 @@ export default function BingoGenerator() {
           </p>
         </div>
 
-        <div id="bingo-grid" className="grid grid-cols-5 gap-2 w-full max-w-2xl mx-auto print:gap-0 print:border print:border-gray-400">
+        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full max-w-2xl mx-auto print:gap-0 print:border print:border-gray-400">
           {grid.map((item, index) => (
             <BingoCard 
               key={index} 

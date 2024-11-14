@@ -93,7 +93,7 @@ export default function BingoGenerator() {
           <h1 className="text-4xl md:text-6xl font-serif text-white tracking-wide print:text-black">
             Pathfinder Bingo
           </h1>
-          <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto print:text-black">
+          <p className="text-white/90 text-md md:text-base max-w-2xl mx-auto print:text-black">
             Generate your unique bingo card and start your Pathfinder journey. Each square represents a step in your adventure.
           </p>
         </div>

@@ -69,3 +69,7 @@
       width: 20%;
     }
   }
+
+  div#action-buttons {
+    margin-top: 300px;
+}

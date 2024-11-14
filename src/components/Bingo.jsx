@@ -104,18 +104,18 @@ export default function BingoGenerator() {
       <div className="absolute bottom-12 left-12 w-8 h-8 text-white/20">★</div>
 
       {/* Content */}
-      <div id="bingo-container" className="relative z-10 space-y-8 print:space-y-4">
+      <div id="bingo-container" className="font-museo-sans-500 relative z-10 space-y-8 print:space-y-4">
         <div className="text-center space-y-4 print:space-y-2">
           <h1 className="text-4xl md:text-6xl text-white tracking-wide print:text-black">
             Pathfinder Bingo
           </h1>
-          <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto print:text-black">
+          <p className="text-white/90 font-museo-sans-500 text-2xl md:text-4xl max-w-2xl mx-auto print:text-black">
             Start your Pathfinder journey with a game of Bingo! Circle each tile on the card as you complete it. Once you have circled all the tiles, find our Pathfinder Community reps (Shreya/ Rima) to snag some swag! 
             Act fast! Only the first 30 winners will receive swag!
           </p>
         </div>
 
-        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full mx-0 print:gap-0 print:border print:border-gray-400">
+        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full font-museo-sans-500 text-3xl mx-0 print:gap-0 print:border print:border-gray-400">
           {grid.map((item, index) => (
             <BingoCard 
               key={index} 

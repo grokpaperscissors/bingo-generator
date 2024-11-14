@@ -5,7 +5,11 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Museo: ['MuseoSans_500', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }

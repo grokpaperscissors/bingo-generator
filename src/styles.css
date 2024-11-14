@@ -6,3 +6,66 @@
   font-family: sans-serif;
   text-align: center;
   }
+
+  @font-face {
+    font-family: 'Museo Sans';
+    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Museo Sans';
+    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Museo Sans';
+    src: url('/assets/fonts/MuseoSans-500.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .font-museo-sans-300 {
+    font-family: 'Museo Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  .font-museo-sans-500 {
+    font-family: 'Museo Sans', sans-serif;
+    font-weight: 500;
+  }
+
+  .font-museo-sans-700 {
+    font-family: 'Museo Sans', sans-serif;
+    font-weight: 700;
+  } */
+
+  .bingo-tile {
+    aspect-ratio: 1 / 1;
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .bingo-tile {
+      font-size: 0.875rem;
+    }
+  }
+
+  #bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  @media print {
+    #bingo-grid {
+      gap: 0;
+    }
+
+    .bingo-tile {
+      width: 20%;
+    }
+  }

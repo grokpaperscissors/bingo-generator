@@ -31,20 +31,6 @@ function shuffleArray(array) {
     .map(({ value }) => value)
 }
 
-useEffect(() => {
-  const originalPixelRatio = window.devicePixelRatio;
-  const setHighDPR = () => {
-    Object.defineProperty(window, 'devicePixelRatio', {
-      get: () => 2 // Or 3, based on your needs
-    });
-  };
-  setHighDPR();
-  return () => {
-    Object.defineProperty(window, 'devicePixelRatio', {
-      get: () => originalPixelRatio
-    });
-  };
-}, []);
 
 const BingoCard = ({ content }) => (
   <div className="bingo-tile flex items-center justify-center p-2 text-center text-sm md:text-md bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">

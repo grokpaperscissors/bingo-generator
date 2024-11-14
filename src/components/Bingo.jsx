@@ -55,7 +55,7 @@ export default function BingoGenerator() {
     generateGrid()
     
     // Load fonts
-    const font = new FontFace('Museo Sans', 'url(../assets/fonts/MuseoSans_500.otf)')
+    const font = new FontFace('Museo Sans', 'url(assets/fonts/museosans_500-webfont.ttf)')
     font.load().then(() => {
       document.fonts.add(font)
       setFontsLoaded(true)
@@ -106,7 +106,7 @@ export default function BingoGenerator() {
       {/* Content */}
       <div id="bingo-container" className="relative z-10 space-y-8 print:space-y-4">
         <div className="text-center space-y-4 print:space-y-2">
-          <h1 className="text-4xl md:text-6xl text-white tracking-wide print:text-black">
+          <h1 className="text-4xl md:text-6xl text-white font-museo-sans-500 tracking-wide print:text-black">
             Pathfinder Bingo
           </h1>
           <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto print:text-black">

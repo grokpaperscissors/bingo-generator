@@ -9,39 +9,39 @@
 
   @font-face {
     font-family: 'Museo Sans';
-    src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Museo Sans';
-    src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
+    src: url('./assets/fonts/museosans-500-webfont.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
   }
 
-  @font-face {
+  /* @font-face {
+    font-family: 'Museo Sans';
+    src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  } */
+
+  /* @font-face {
     font-family: 'Museo Sans';
     src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
-  }
+  } */
 
-  .font-museo-sans-300 {
+  /* .font-museo-sans-300 {
     font-family: 'Museo Sans', sans-serif;
     font-weight: 300;
-  }
+  } */
 
   .font-museo-sans-500 {
     font-family: 'Museo Sans', sans-serif;
     font-weight: 500;
   }
 
-  .font-museo-sans-700 {
+  /* .font-museo-sans-700 {
     font-family: 'Museo Sans', sans-serif;
     font-weight: 700;
-  } */
+  } */ */
 
   .bingo-tile {
     aspect-ratio: 1 / 1;

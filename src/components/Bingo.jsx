@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect } from "react"
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
+import logo from '../assets/images/logo.png';
 
 const suggestions = [
   "Made a new LinkedIn Connection", "Met Micah", "Made a social media post about Imagine India",
@@ -46,7 +47,7 @@ export default function BingoGenerator() {
 
   const generateGrid = useCallback(() => {
     const shuffled = shuffleArray([...suggestions])
-    shuffled.splice(12, 0, { src: "./src/assets/images/logo.png", alt: "Logo" }) // Insert logo in the middle
+    shuffled.splice(12, 0, { src: logo, alt: "Logo" }) // Insert logo in the middle
     setGrid(shuffled)
   }, [])
 

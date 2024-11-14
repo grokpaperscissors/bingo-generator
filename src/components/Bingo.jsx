@@ -55,7 +55,7 @@ export default function BingoGenerator() {
     generateGrid()
     
     // Load fonts
-    const font = new FontFace('Museo Sans', 'url(assets/fonts/museosans_500-webfont.ttf)')
+    const font = new FontFace('Museo Sans', 'url(assets/fonts/museosans-500-webfont.ttf)')
     font.load().then(() => {
       document.fonts.add(font)
       setFontsLoaded(true)

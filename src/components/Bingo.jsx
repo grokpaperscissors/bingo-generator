@@ -92,6 +92,32 @@ export default function BingoGenerator() {
   //   return <div>Loading...</div>
   // }
 
+  const savePNG = useCallback(() => {
+    const input = document.getElementById('bingo-container')
+    const buttons = document.getElementById('action-buttons')
+
+    // Hide the buttons before taking the screenshot
+    buttons.classList.add('hidden')
+
+    html2canvas(input, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png')
+
+      // Create a link element to trigger the download
+      const link = document.createElement('a')
+      link.href = imgData
+      link.download = 'pathfinder-bingo.png'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      // Show the buttons again after download
+      buttons.classList.remove('hidden')
+    }).catch((error) => {
+      console.error('Error generating PNG:', error)
+      buttons.classList.remove('hidden')
+    })
+  }, [])
+
   return (
     <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-purple-700 print:bg-white print:p-0">
       {/* Diagonal stripes overlay */}
@@ -128,16 +154,24 @@ export default function BingoGenerator() {
         <div className="flex justify-center gap-4 print:hidden">
           <button 
             onClick={generateGrid} 
-            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors print:hidden"
           >
             <span className="mr-2">↻</span> Regenerate
           </button>
-          <button 
+          {/* <button 
             onClick={savePDF} 
-            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors print:hidden"
           >
             <span className="mr-2">↓</span> Save as PDF
+          </button> */}
+
+          <button
+            onClick={savePNG}
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+          >
+            <span className="mr-2">↓</span> Save as PNG
           </button>
+
         </div>
       </div>
     </div>

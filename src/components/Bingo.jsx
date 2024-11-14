@@ -87,9 +87,9 @@ export default function BingoGenerator() {
     })
   }, [])
 
-  if (!fontsLoaded) {
-    return <div>Loading...</div>
-  }
+  // if (!fontsLoaded) {
+  //   return <div>Loading...</div>
+  // }
 
   return (
     <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-purple-700 print:bg-white print:p-0">

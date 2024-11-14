@@ -32,7 +32,7 @@ function shuffleArray(array) {
 }
 
 const BingoCard = ({ content }) => (
-  <div className="bingo-tile flex items-center justify-center p-2 text-center text-lg md:text-xl bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
+  <div className="bingo-tile flex items-center justify-center p-2 text-center text-md md:text-lg bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
 
   {/* <div className="bingo-tile flex items-center justify-center p-2 text-center bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none"> */}
     {typeof content === 'string' ? content : (

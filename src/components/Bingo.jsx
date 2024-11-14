@@ -55,12 +55,25 @@ export default function BingoGenerator() {
     generateGrid()
     
     // Load fonts
-    const font = new FontFace('Museo Sans', 'url(../assets/fonts/MuseoSans_500.otf)')
+    const font = new FontFace('Museo Sans', 'url(assets/fonts/museosans-500-webfont.ttf)')
     font.load().then(() => {
       document.fonts.add(font)
       setFontsLoaded(true)
     })
   }, [generateGrid])
+
+  const hideButtonsTemporarily = (callback) => {
+    const buttons = document.getElementById('action-buttons')
+    // Hide the buttons before taking the screenshot
+    buttons.style.display = 'none'
+
+    // Execute the callback (e.g., save PNG or save PDF)
+    callback().finally(() => {
+      // Show the buttons again after processing is complete
+      buttons.style.display = 'flex'
+    })
+  }
+
 
   const savePDF = useCallback(() => {
     const input = document.getElementById('bingo-container')
@@ -92,6 +105,23 @@ export default function BingoGenerator() {
   //   return <div>Loading...</div>
   // }
 
+  const savePNG = useCallback(() => {
+    hideButtonsTemporarily(() => {
+      return html2canvas(document.getElementById('bingo-container'), { scale: 2 })
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png')
+
+          // Create a link element to trigger the download
+          const link = document.createElement('a')
+          link.href = imgData
+          link.download = 'pathfinder-bingo.png'
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+        })
+    })
+  }, [])
+
   return (
     <div className="min-h-screen w-full max-w-4xl mx-auto p-4 md:p-8 relative overflow-hidden bg-gradient-to-br from-orange-400 via-red-500 to-purple-700 print:bg-white print:p-0">
       {/* Diagonal stripes overlay */}
@@ -106,7 +136,7 @@ export default function BingoGenerator() {
       {/* Content */}
       <div id="bingo-container" className="font-museo-sans-500 relative z-10 space-y-8 print:space-y-4">
         <div className="text-center space-y-4 print:space-y-2">
-          <h1 className="text-4xl md:text-6xl text-white tracking-wide print:text-black">
+          <h1 className="text-4xl md:text-6xl text-white font-museo-sans-500 tracking-wide print:text-black">
             Pathfinder Bingo
           </h1>
           <p className="text-white/90 font-museo-sans-500 text-2xl md:text-4xl max-w-2xl mx-auto print:text-black">
@@ -125,19 +155,27 @@ export default function BingoGenerator() {
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-center gap-4 print:hidden">
+        <div id="action-buttons" className="flex justify-center gap-4 print:hidden">
           <button 
             onClick={generateGrid} 
-            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors print:hidden"
           >
             <span className="mr-2">↻</span> Regenerate
           </button>
-          <button 
+          {/* <button 
             onClick={savePDF} 
-            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors print:hidden"
           >
             <span className="mr-2">↓</span> Save as PDF
+          </button> */}
+
+          <button
+            onClick={savePNG}
+            className="bg-white text-purple-700 hover:bg-purple-100 px-4 py-2 rounded-md flex items-center transition-colors"
+          >
+            <span className="mr-2">↓</span> Save as PNG
           </button>
+
         </div>
       </div>
     </div>

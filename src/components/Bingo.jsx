@@ -46,7 +46,7 @@ export default function BingoGenerator() {
 
   const generateGrid = useCallback(() => {
     const shuffled = shuffleArray([...suggestions])
-    shuffled.splice(12, 0, { src: ".src/assets/images/logo.png", alt: "Logo" }) // Insert logo in the middle
+    shuffled.splice(12, 0, { src: "./src/assets/images/logo.png", alt: "Logo" }) // Insert logo in the middle
     setGrid(shuffled)
   }, [])
 
@@ -113,7 +113,7 @@ export default function BingoGenerator() {
           </p>
         </div>
 
-        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full max-w-2xl mx-auto print:gap-0 print:border print:border-gray-400">
+        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full max-w-2xl mx-0 print:gap-0 print:border print:border-gray-400">
           {grid.map((item, index) => (
             <BingoCard 
               key={index} 

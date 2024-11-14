@@ -9,39 +9,51 @@
 
   @font-face {
     font-family: 'Museo Sans';
+    src: url('./assets/fonts/museosans-900-webfont.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Museo Sans';
     src: url('./assets/fonts/museosans-500-webfont.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
   }
 
-  /* @font-face {
+  @font-face {
     font-family: 'Museo Sans';
-    src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
+    src: url('./assets/fonts/museosans-300-webfont.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
-  } */
+  }
 
-  /* @font-face {
+  @font-face {
     font-family: 'Museo Sans';
-    src: url('../assets/fonts/MuseoSans_500.otf') format('opentype');
-    font-weight: 700;
+    src: url('./assets/fonts/museosans-100-webfont.ttf') format('truetype');
+    font-weight: 100;
     font-style: normal;
-  } */
+  }
 
-  /* .font-museo-sans-300 {
+  .font-museo-sans-100 {
+    font-family: 'Museo Sans', sans-serif;
+    font-weight: 100;
+  }
+
+  .font-museo-sans-300 {
     font-family: 'Museo Sans', sans-serif;
     font-weight: 300;
-  } */
+  }
 
   .font-museo-sans-500 {
     font-family: 'Museo Sans', sans-serif;
     font-weight: 500;
   }
 
-  /* .font-museo-sans-700 {
+  .font-museo-sans-900 {
     font-family: 'Museo Sans', sans-serif;
-    font-weight: 700;
-  } */
+    font-weight: 900;
+  }
 
   .bingo-tile {
     aspect-ratio: 1 / 1;

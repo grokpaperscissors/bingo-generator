@@ -113,7 +113,7 @@ export default function BingoGenerator() {
           </p>
         </div>
 
-        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full max-w-2xl mx-0 print:gap-0 print:border print:border-gray-400">
+        <div id="bingo-grid" className="grid grid-cols-5 gap-2 aspect-square w-full mx-0 print:gap-0 print:border print:border-gray-400">
           {grid.map((item, index) => (
             <BingoCard 
               key={index} 

@@ -32,7 +32,7 @@ function shuffleArray(array) {
 }
 
 const BingoCard = ({ content }) => (
-  <div className="bingo-tile flex items-center justify-center p-2 text-center text-md md:text-lg bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
+  <div className="bingo-tile flex items-center justify-center p-2 text-center text-lg md:text-xl bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none">
 
   {/* <div className="bingo-tile flex items-center justify-center p-2 text-center bg-white border border-gray-200 print:border-gray-400 hover:bg-gray-100 transition-colors rounded-lg shadow print:shadow-none"> */}
     {typeof content === 'string' ? content : (
@@ -139,7 +139,7 @@ export default function BingoGenerator() {
           <h1 className="text-4xl md:text-6xl text-white font-museo-sans-900 tracking-wide print:text-black">
             Pathfinder Bingo
           </h1>
-          <p className="text-white/90 font-museo-sans-100 text-2xl md:text-4xl max-w-2xl mx-auto print:text-black">
+          <p className="text-white/90 font-museo-sans-100 text-xl md:text-2xl max-w-2xl mx-auto print:text-black">
             Start your Pathfinder journey with a game of Bingo! Circle each tile on the card as you complete it. Once you have circled all the tiles, find our Pathfinder Community reps (Shreya/ Rima) to snag some swag! 
             Act fast! Only the first 30 winners will receive swag!
           </p>

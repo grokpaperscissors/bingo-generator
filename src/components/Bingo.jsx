@@ -55,7 +55,7 @@ export default function BingoGenerator() {
     generateGrid()
     
     // Load fonts
-    const font = new FontFace('Museo Sans', 'url(/assets/fonts/MuseoSans-500.otf)')
+    const font = new FontFace('Museo Sans', 'url(./assets/fonts/MuseoSans_500.otf)')
     font.load().then(() => {
       document.fonts.add(font)
       setFontsLoaded(true)
@@ -110,7 +110,8 @@ export default function BingoGenerator() {
             Pathfinder Bingo
           </h1>
           <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto print:text-black">
-            Generate your unique bingo card and start your Pathfinder journey. Each square represents a step in your adventure.
+            Start your Pathfinder journey with a game of Bingo! Circle each tile on the card as you complete it. Once you have circled all the tiles, find our Pathfinder Community reps (Shreya/ Rima) to snag some swag! 
+            Act fast! Only the first 30 winners will receive swag!
           </p>
         </div>
 
